@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EDI Parser Suite - Healthcare Claims & Remittance Viewer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-50">
+    <!-- Mobile Overlay -->
+    <div id="mobileOverlay" class="mobile-overlay"></div>
+    
+    <!-- Sidebar -->
+    <nav id="sidebar" class="sidebar">
+        <div class="p-6">
+            <!-- Logo/Brand -->
+            <div class="text-white mb-8">
+                <h1 class="text-xl font-bold">EDI Parser Suite</h1>
+                <p class="text-blue-200 text-sm mt-1">Healthcare Data Tools</p>
+            </div>
+            
+            <!-- Navigation Menu -->
+            <ul class="space-y-2">
+                <li>
+                    <a href="#" class="nav-item active flex items-center p-3 text-white rounded-lg" data-page="home">
+                        <span class="nav-icon text-xl mr-3">🏠</span>
+                        <span class="font-medium">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-item flex items-center p-3 text-white rounded-lg" data-page="edi837">
+                        <span class="nav-icon text-xl mr-3">📋</span>
+                        <span class="font-medium">EDI 837 Parser</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="nav-item flex items-center p-3 text-white rounded-lg opacity-50 cursor-not-allowed" data-page="edi835">
+                        <span class="nav-icon text-xl mr-3">💰</span>
+                        <span class="font-medium">EDI 835 Parser</span>
+                        <span class="ml-auto text-xs bg-yellow-500 text-yellow-900 px-2 py-1 rounded">Soon</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <!-- Footer -->
+        <div class="absolute bottom-0 left-0 right-0 p-6 border-t border-blue-400">
+            <div class="text-blue-200 text-xs">
+                <p>© 2025 EDI Parser Suite</p>
+                <p class="mt-1">Client-side Processing</p>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Mobile Menu Button -->
+    <button id="mobileMenuBtn" class="md:hidden fixed top-4 left-4 z-50 p-2 bg-blue-600 text-white rounded-lg shadow-lg">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>
+    </button>
+    
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Home Page -->
+        <div id="homePage" class="page active">
+            <div class="container mx-auto px-4 py-8 max-w-6xl">
+                <!-- Header -->
+                <div class="text-center mb-12">
+                    <h1 class="text-5xl font-bold text-gray-800 mb-4">EDI Parser Suite</h1>
+                    <p class="text-xl text-gray-600 mb-6">Professional Healthcare Data Processing Tools</p>
+                    <div class="inline-flex items-center bg-green-100 border border-green-300 rounded-lg px-4 py-2">
+                        <svg class="w-5 h-5 text-green-600 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                        </svg>
+                        <span class="text-green-800 font-medium">100% Client-Side Processing - Your Data Never Leaves Your Browser</span>
+                    </div>
+                </div>
+                
+                <!-- Feature Cards -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- EDI 837 Card -->
+                    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-blue-100 p-3 rounded-lg mr-4">
+                                <span class="text-3xl">📋</span>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-800">EDI 837 Parser</h3>
+                                <p class="text-gray-600">Healthcare Claims</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Parse and analyze healthcare claim submissions. Extract provider information, patient details, 
+                            claim amounts, diagnosis codes, and service line items in a human-readable format.
+                        </p>
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-3">Supported Segments:</h4>
+                            <div class="grid grid-cols-3 gap-2 text-sm">
+                                <span class="bg-gray-100 px-2 py-1 rounded">ISA</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">GS</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">ST</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">BHT</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">NM1</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">CLM</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">SV1</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">HI</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">DTP</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-blue-600 text-white py-3 px-6 rounded-lg font-medium hover:bg-blue-700 transition-colors duration-200" onclick="navigateToPage('edi837')">
+                            Start Parsing Claims
+                        </button>
+                    </div>
+                    
+                    <!-- EDI 835 Card -->
+                    <div class="bg-white rounded-xl shadow-lg p-8 border border-gray-200 opacity-75">
+                        <div class="flex items-center mb-6">
+                            <div class="bg-green-100 p-3 rounded-lg mr-4">
+                                <span class="text-3xl">💰</span>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold text-gray-800">EDI 835 Parser</h3>
+                                <p class="text-gray-600">Healthcare Remittance</p>
+                            </div>
+                        </div>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Parse and analyze healthcare payment remittance advice. Extract payment information, 
+                            adjustment details, claim status, and provider remittance data.
+                        </p>
+                        <div class="mb-6">
+                            <h4 class="font-semibold text-gray-800 mb-3">Coming Soon:</h4>
+                            <div class="grid grid-cols-3 gap-2 text-sm">
+                                <span class="bg-gray-100 px-2 py-1 rounded">BPR</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">TRN</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">CLP</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">SVC</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">PLB</span>
+                                <span class="bg-gray-100 px-2 py-1 rounded">AMT</span>
+                            </div>
+                        </div>
+                        <div class="w-full bg-gray-300 text-gray-600 py-3 px-6 rounded-lg font-medium text-center cursor-not-allowed">
+                            Coming Soon
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Features Section -->
+                <div class="bg-white rounded-xl shadow-lg p-8 mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Key Features</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Privacy First</h3>
+                            <p class="text-gray-600">All processing happens locally in your browser. No data transmission to servers.</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-green-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">Real-time Parsing</h3>
+                            <p class="text-gray-600">Instant parsing and visualization of EDI data with comprehensive error handling.</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-purple-600" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                                </svg>
+                            </div>
+                            <h3 class="text-xl font-semibold text-gray-800 mb-2">User-Friendly</h3>
+                            <p class="text-gray-600">Clean, responsive interface with detailed breakdowns and formatted output.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- About Section -->
+                <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl shadow-lg p-8 text-white text-center">
+                    <h2 class="text-3xl font-bold mb-4">About EDI Parser Suite</h2>
+                    <p class="text-xl text-blue-100 mb-6 max-w-3xl mx-auto leading-relaxed">
+                        A comprehensive tool for healthcare professionals to parse and analyze EDI transactions. 
+                        Built with privacy and security in mind, ensuring your sensitive healthcare data remains on your device.
+                    </p>
+                    <div class="flex justify-center space-x-6 text-sm">
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            HIPAA Compliant
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                            No Downloads Required
+                        </div>
+                        <div class="flex items-center">
+                            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                            </svg>
+                            Open Source
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- EDI 837 Page -->
+        <div id="edi837Page" class="page hidden">
+            <div class="container mx-auto px-4 py-8 max-w-7xl">
+                <!-- Header -->
+                <div class="text-center mb-8">
+                    <h1 class="text-4xl font-bold text-gray-800 mb-2">EDI 837 Parser</h1>
+                    <p class="text-gray-600 text-lg">Healthcare Claims Data Viewer - Client-Side Processing</p>
+                    <div class="mt-4 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+                        <p class="text-sm text-blue-700">
+                            <strong>Privacy Note:</strong> All data processing happens locally in your browser. No data is sent to any server.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Input Section -->
+                <div class="bg-white rounded-lg shadow-lg p-6 mb-8">
+                    <div class="mb-4">
+                        <label for="ediInput" class="block text-sm font-medium text-gray-700 mb-2">
+                            EDI 837 Data Input
+                        </label>
+                        <textarea
+                            id="ediInput"
+                            rows="8"
+                            class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 code-block text-sm"
+                            placeholder="Paste your EDI 837 data here...&#10;&#10;Example:&#10;ISA*00*          *00*          *ZZ*SUBMITTER_ID  *ZZ*RECEIVER_ID   *210315*1234*^*00501*000000001*0*P*>~&#10;GS*HC*SENDER*RECEIVER*20210315*1234*1*X*005010X222A1~&#10;ST*837*0001*005010X222A1~&#10;..."
+                        ></textarea>
+                    </div>
+                    
+                    <div class="flex gap-4">
+                        <button
+                            id="parseBtn"
+                            class="px-6 py-3 bg-blue-600 text-white font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
+                        >
+                            Parse EDI 837
+                        </button>
+                        
+                        <button
+                            id="clearBtn"
+                            class="px-6 py-3 bg-gray-500 text-white font-medium rounded-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400 transition-colors duration-200"
+                        >
+                            Clear
+                        </button>
+                        
+                        <button
+                            id="sampleBtn"
+                            class="px-6 py-3 bg-green-600 text-white font-medium rounded-md hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 transition-colors duration-200 tooltip"
+                            data-tooltip="Load sample EDI 837 data for testing"
+                        >
+                            Load Sample
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Loading Indicator -->
+                <div id="loadingIndicator" class="hidden text-center py-8">
+                    <div class="inline-flex items-center">
+                        <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mr-3"></div>
+                        <span class="text-lg text-gray-600">Parsing EDI data...</span>
+                    </div>
+                </div>
+
+                <!-- Error Display -->
+                <div id="errorDisplay" class="hidden bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/>
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <h3 class="text-sm font-medium text-red-800">Parsing Error</h3>
+                            <div id="errorMessage" class="mt-2 text-sm text-red-700"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Results Section -->
+                <div id="resultsSection" class="hidden">
+                    <!-- Summary Cards -->
+                    <div id="summaryCards" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8"></div>
+                    
+                    <!-- Parsed Data Display -->
+                    <div id="parsedData" class="space-y-6"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
